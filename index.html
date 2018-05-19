@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title> Phone Price Calculator </title>
+  	<style type="text/css">
+  		#container{
+  			margin: auto;
+  			width: 500px;
+  			text-align: center;
+  		}
+  		.containerChild{
+  			padding: 2px;
+  			text-align: left;
+  		}
+  		#submitBtn{
+  			text-align: center;
+  			margin: auto;
+  			padding: 2px;
+  			margin-top: 5px;
+  		}
+  	</style>
+  </head>
+  <body>
+  	<div id="container">
+  		<div class="containerChild">
+	  		<label> 
+	  		How much money is in your bank acount?
+	  		</label>
+	  		<input type="number" id="totalMoney" name="totalMoney" onchange="clearTexts()" />
+	  	</div>
+	  	<div class="containerChild">
+	  		<label>
+	  			How much are you willing to spend?
+	  		</label> 
+	  		<input type="number" id="spentMoney" name="spentMoney" onchange="clearTexts()"/> <br/>
+	  	</div>
+	  	<input type="submit" id="submitBtn" name="calculate" value="SPEND MONEY!" onclick="calculator()"/>
+	  	<p id="totalPurchase"></p>
+	  	<p id="message"></p>
+  	</div>
+  	<script>
+  		function calculator() {
+	  		var TOTAL_MONEY = parseInt(document.getElementById('totalMoney').value);
+	  		var spentMoney = parseInt(document.getElementById('spentMoney').value);
+	  		if (TOTAL_MONEY && spentMoney)
+	  		{
+	  			var TAX = 0.02*spentMoney;
+	  			  		var TOTAL_SPENT = spentMoney + TAX;
+	  			  		document.getElementById('totalPurchase').innerHTML = "Your total is $"+TOTAL_SPENT+"!";
+	  			  		if(TOTAL_MONEY < TOTAL_SPENT) {
+	  			  			document.getElementById('message').innerHTML = "You can't afford this purchase. :("
+	  			  		}
+	  		}
+	  		else {
+	  			document.getElementById('message').innerHTML = "Please enter valid amounts. "
+	  		}
+  		}	
+
+  		function clearTexts() {
+  			document.getElementById('message').innerHTML = '';
+  			document.getElementById('totalPurchase').innerHTML = '';
+  		}
+  	</script>
+  </body>
+</html>
